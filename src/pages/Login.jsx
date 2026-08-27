@@ -7,7 +7,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 function Login() {
-  const navigate = useNavigate();
+const location = useLocation();
+const destination =
+  location.state?.from?.pathname || "/";
+  
+const navigate = useNavigate();
+
+navigate(destination, {
+  replace: true,
+});
 
   const { login } = useAuth();
 
