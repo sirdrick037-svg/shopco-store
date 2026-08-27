@@ -20,12 +20,10 @@ function Home() {
   return (
     <div className="bg-white">
 
-      {/* HERO */}
       <section className="px-4 pt-4 sm:px-6 lg:px-8">
 
         <div className="mx-auto grid max-w-7xl overflow-hidden rounded-2xl bg-[#edf4ee] lg:grid-cols-2">
 
-          {/* Hero text */}
           <div className="flex flex-col justify-center px-6 py-16 sm:px-10 lg:px-16 lg:py-20">
 
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-green-700">
@@ -66,7 +64,6 @@ function Home() {
 
           </div>
 
-          {/* Hero image */}
           <div className="relative min-h-[400px] lg:min-h-[540px]">
 
             <img
@@ -99,7 +96,6 @@ function Home() {
 
       </section>
 
-      {/* SERVICES */}
       <section className="px-4 sm:px-6 lg:px-8">
 
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 border-b border-gray-100 py-8 lg:grid-cols-4">
@@ -132,7 +128,6 @@ function Home() {
 
       </section>
 
-      {/* FEATURED PRODUCTS */}
       <section className="px-4 py-16 sm:px-6 lg:px-8">
 
         <div className="mx-auto max-w-7xl">
@@ -158,7 +153,7 @@ function Home() {
 
       </section>
 
-      {/* CATEGORIES */}
+
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
 
         <div className="mx-auto max-w-7xl">
@@ -201,7 +196,6 @@ function Home() {
 
       </section>
 
-      {/* PROMO */}
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
 
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-10 rounded-2xl bg-[#111318] px-6 py-12 text-white sm:px-10 lg:flex-row lg:items-center lg:px-14">
@@ -255,9 +249,6 @@ function Home() {
   );
 }
 
-
-/* SERVICE */
-
 function Service({ icon, title, text }) {
   return (
     <div className="flex items-start gap-3">
@@ -279,9 +270,6 @@ function Service({ icon, title, text }) {
     </div>
   );
 }
-
-
-/* SECTION HEADING */
 
 function SectionHeading({
   eyebrow,
@@ -314,9 +302,6 @@ function SectionHeading({
     </div>
   );
 }
-
-
-/* CATEGORY CARD */
 
 function CategoryCard({
   name,
