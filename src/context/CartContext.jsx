@@ -1,107 +1,92 @@
-import { createContext, useContext, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+} from "react";
 
 const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState(() => {
-    const savedCart = localStorage.getItem("shopco_cart");
-
-    try {
-      return savedCart ? JSON.parse(savedCart) : [];
-    } catch {
-      return [];
-    }
-  });
+  const [cart, setCart] = useState([]);
 
   const addToCart = (product) => {
     setCart((currentCart) => {
       const existingProduct = currentCart.find(
-        (item) => item.id === product.id,
+        (item) => item.id === product.id
       );
 
-      let updatedCart;
-
       if (existingProduct) {
-        updatedCart = currentCart.map((item) =>
+        return currentCart.map((item) =>
           item.id === product.id
             ? {
                 ...item,
                 quantity: item.quantity + 1,
               }
-            : item,
+            : item
         );
-      } else {
-        updatedCart = [
-          ...currentCart,
-          {
-            ...product,
-            quantity: 1,
-          },
-        ];
       }
 
-      localStorage.setItem("shopco_cart", JSON.stringify(updatedCart));
-
-      return updatedCart;
+      return [
+        ...currentCart,
+        {
+          ...product,
+          quantity: 1,
+        },
+      ];
     });
   };
 
   const removeFromCart = (productId) => {
-    setCart((currentCart) => {
-      const updatedCart = currentCart.filter((item) => item.id !== productId);
-
-      localStorage.setItem("shopco_cart", JSON.stringify(updatedCart));
-
-      return updatedCart;
-    });
+    setCart((currentCart) =>
+      currentCart.filter(
+        (item) => item.id !== productId
+      )
+    );
   };
 
   const increaseQuantity = (productId) => {
-    setCart((currentCart) => {
-      const updatedCart = currentCart.map((item) =>
+    setCart((currentCart) =>
+      currentCart.map((item) =>
         item.id === productId
           ? {
               ...item,
               quantity: item.quantity + 1,
             }
-          : item,
-      );
-
-      localStorage.setItem("shopco_cart", JSON.stringify(updatedCart));
-
-      return updatedCart;
-    });
+          : item
+      )
+    );
   };
 
   const decreaseQuantity = (productId) => {
-    setCart((currentCart) => {
-      const updatedCart = currentCart
+    setCart((currentCart) =>
+      currentCart
         .map((item) =>
           item.id === productId
             ? {
                 ...item,
                 quantity: item.quantity - 1,
               }
-            : item,
+            : item
         )
-        .filter((item) => item.quantity > 0);
-
-      localStorage.setItem("shopco_cart", JSON.stringify(updatedCart));
-
-      return updatedCart;
-    });
+        .filter((item) => item.quantity > 0)
+    );
   };
 
   const clearCart = () => {
     setCart([]);
-    localStorage.removeItem("shopco_cart");
   };
 
-  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+  const cartCount = cart.reduce(
+    (total, item) =>
+      total + item.quantity,
+    0
+  );
 
   const cartTotal = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0,
+    (total, item) =>
+      total +
+      item.price * item.quantity,
+    0
   );
 
   return (
@@ -123,5 +108,13 @@ export function CartProvider({ children }) {
 }
 
 export function useCart() {
-  return useContext(CartContext);
+  const context = useContext(CartContext);
+
+  if (!context) {
+    throw new Error(
+      "useCart must be used inside CartProvider"
+    );
+  }
+
+  return context;
 }
