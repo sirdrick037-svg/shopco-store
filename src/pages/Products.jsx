@@ -101,6 +101,41 @@ const products = [
     image:
       "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80",
   },
+  {
+  id: 13,
+  name: "White Casual Sneakers",
+  category: "Shoes",
+  price: 69.99,
+  image:
+    "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80",
+},
+
+{
+  id: 14,
+  name: "Classic Black Trainers",
+  category: "Shoes",
+  price: 84.99,
+  image:
+    "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=600&q=80",
+},
+
+{
+  id: 15,
+  name: "Modern Running Shoes",
+  category: "Shoes",
+  price: 94.99,
+  image:
+    "https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=600&q=80",
+},
+
+{
+  id: 16,
+  name: "Classic Leather Shoes",
+  category: "Shoes",
+  price: 109.99,
+  image:
+    "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=600&q=80",
+},
 ];
 
 const categories = ["All", "Clothing", "Shoes", "Bags", "Accessories"];
