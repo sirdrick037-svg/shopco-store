@@ -1,101 +1,117 @@
-import {
-  ArrowRight,
-  Headphones,
-  RotateCcw,
-  ShieldCheck,
-  ShoppingBag,
-  Truck,
-} from "lucide-react";
-
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
-<Link
-  to="/login"
-  className="inline-flex items-center gap-2 rounded-lg bg-black px-6 py-3 text-sm font-semibold text-white hover:bg-green-700 transition"
->
-  Get Started
-</Link>
-
-import products from "../data/products";
-import ProductCard from "../components/ProductCard";
+const products = [
+  {
+    id: 1,
+    name: "Classic White Shirt",
+    price: 39.99,
+    image:
+      "https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    id: 2,
+    name: "Casual Denim Jacket",
+    price: 59.99,
+    image:
+      "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    id: 3,
+    name: "Everyday Sneakers",
+    price: 74.99,
+    image:
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    id: 4,
+    name: "Leather Handbag",
+    price: 89.99,
+    image:
+      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    id: 5,
+    name: "Minimal Watch",
+    price: 49.99,
+    image:
+      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    id: 6,
+    name: "Premium Sunglasses",
+    price: 34.99,
+    image:
+      "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    id: 7,
+    name: "Cotton Hoodie",
+    price: 44.99,
+    image:
+      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    id: 8,
+    name: "Classic Backpack",
+    price: 64.99,
+    image:
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80",
+  },
+];
 
 function Home() {
-  const featuredProducts = products.filter(
-    (product) => product.featured
-  );
-
   return (
     <div className="bg-white">
 
-      <section className="px-4 pt-4 sm:px-6 lg:px-8">
+      {/* ================= HERO ================= */}
 
-        <div className="mx-auto grid max-w-7xl overflow-hidden rounded-2xl bg-[#edf4ee] lg:grid-cols-2">
+      <section className="px-4 py-12 sm:px-6 lg:px-8">
 
-          <div className="flex flex-col justify-center px-6 py-16 sm:px-10 lg:px-16 lg:py-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2">
 
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-green-700">
-              Modern essentials
+          {/* TEXT */}
+
+          <div>
+
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-green-600">
+              Welcome to ShopCo.
             </p>
 
-            <h1 className="mt-4 text-5xl font-black leading-[0.95] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
-              Fresh Style.
+            <h1 className="mt-4 text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+              Discover your
               <br />
-              Everyday.
+              everyday style.
             </h1>
 
-            <p className="mt-6 max-w-md text-sm leading-7 text-gray-600">
-              Discover modern pieces that make you
-              look good and feel great. Carefully
-              selected essentials for your everyday
-              lifestyle.
+            <p className="mt-5 max-w-lg text-sm leading-7 text-gray-500">
+              Explore carefully selected products designed
+              to bring comfort, style, and simplicity into
+              your everyday life.
             </p>
 
-            <div className="mt-8 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+            {/* GET STARTED */}
 
-              <Link
-                to="/products"
-                className="inline-flex items-center gap-2 rounded-lg bg-green-600 px-6 py-3 text-xs font-bold text-white transition hover:bg-green-700"
-              >
-                Shop Now
-                <ArrowRight size={16} />
-              </Link>
-
-              <Link
-                to="/categories"
-                className="border-b border-gray-800 pb-1 text-xs font-bold text-gray-800"
-              >
-                Explore Categories
-              </Link>
-
-            </div>
+            <Link
+              to="/login"
+              className="mt-7 inline-flex items-center gap-2 rounded-lg bg-green-600 px-6 py-3 text-xs font-bold text-white shadow-sm transition duration-200 hover:bg-green-700 hover:shadow-md"
+            >
+              Get Started
+              <ArrowRight size={15} />
+            </Link>
 
           </div>
 
-          <div className="relative min-h-[400px] lg:min-h-[540px]">
+
+          {/* HERO IMAGE */}
+
+          <div className="overflow-hidden rounded-2xl">
 
             <img
-              src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=85"
-              alt="Modern fashion collection"
-              className="h-full w-full object-cover"
+              src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=85"
+              alt="ShopCo collection"
+              className="h-[420px] w-full object-cover"
             />
-
-            <div className="absolute bottom-5 left-5 flex items-center gap-3 rounded-xl bg-white/95 p-3 shadow-xl">
-
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-50 text-green-700">
-                <ShoppingBag size={18} />
-              </div>
-
-              <div className="flex flex-col">
-                <strong className="text-xs">
-                  New Collection
-                </strong>
-
-                <span className="mt-1 text-[10px] text-gray-500">
-                  Explore the latest styles
-                </span>
-              </div>
-
-            </div>
 
           </div>
 
@@ -103,55 +119,69 @@ function Home() {
 
       </section>
 
-      <section className="px-4 sm:px-6 lg:px-8">
 
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 border-b border-gray-100 py-8 lg:grid-cols-4">
+      {/* ================= CATEGORIES ================= */}
 
-          <Service
-            icon={<Truck size={21} />}
-            title="Free Shipping"
-            text="On orders over $50"
-          />
-
-          <Service
-            icon={<RotateCcw size={21} />}
-            title="Easy Returns"
-            text="30-day return policy"
-          />
-
-          <Service
-            icon={<ShieldCheck size={21} />}
-            title="Secure Payment"
-            text="100% secure checkout"
-          />
-
-          <Service
-            icon={<Headphones size={21} />}
-            title="24/7 Support"
-            text="We're here to help"
-          />
-
-        </div>
-
-      </section>
-
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
+      <section className="bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
 
         <div className="mx-auto max-w-7xl">
 
-          <SectionHeading
-            eyebrow="Our selection"
-            title="Featured Products"
-            link="/products"
-          />
+          <div className="mb-7">
 
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-green-600">
+              Shop by category
+            </p>
 
-            {featuredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-              />
+            <h2 className="mt-2 text-2xl font-black">
+              Find what you need
+            </h2>
+
+          </div>
+
+
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+
+            {[
+              {
+                name: "Clothing",
+                image:
+                  "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80",
+              },
+              {
+                name: "Shoes",
+                image:
+                  "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80",
+              },
+              {
+                name: "Accessories",
+                image:
+                  "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?auto=format&fit=crop&w=600&q=80",
+              },
+              {
+                name: "Bags",
+                image:
+                  "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80",
+              },
+            ].map((category) => (
+              <Link
+                key={category.name}
+                to="/categories"
+                className="group relative overflow-hidden rounded-xl"
+              >
+
+                <img
+                  src={category.image}
+                  alt={category.name}
+                  className="h-40 w-full object-cover transition duration-300 group-hover:scale-105"
+                />
+
+                <div className="absolute inset-0 bg-black/25" />
+
+                <h3 className="absolute bottom-4 left-4 text-sm font-bold text-white">
+                  {category.name}
+                </h3>
+
+              </Link>
             ))}
 
           </div>
@@ -161,90 +191,84 @@ function Home() {
       </section>
 
 
-      <section className="px-4 pb-16 sm:px-6 lg:px-8">
+      {/* ================= PRODUCTS ================= */}
+
+      <section className="px-4 py-12 sm:px-6 lg:px-8">
 
         <div className="mx-auto max-w-7xl">
 
-          <SectionHeading
-            eyebrow="Find your style"
-            title="Shop by Category"
-            link="/categories"
-          />
+          {/* SECTION HEADER */}
 
-          <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+          <div className="mb-7 flex items-end justify-between">
 
-            <CategoryCard
-              name="Sneakers"
-              image={products[0].image}
-              count="24 items"
-            />
+            <div>
 
-            <CategoryCard
-              name="T-Shirts"
-              image={products[3].image}
-              count="18 items"
-            />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-green-600">
+                Featured collection
+              </p>
 
-            <CategoryCard
-              name="Hoodies"
-              image={products[1].image}
-              count="16 items"
-            />
+              <h2 className="mt-2 text-2xl font-black">
+                Popular products
+              </h2>
 
-            <CategoryCard
-              name="Accessories"
-              image={products[4].image}
-              count="20 items"
-            />
-
-          </div>
-
-        </div>
-
-      </section>
-
-      <section className="px-4 pb-16 sm:px-6 lg:px-8">
-
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-10 rounded-2xl bg-[#111318] px-6 py-12 text-white sm:px-10 lg:flex-row lg:items-center lg:px-14">
-
-          <div>
-
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-green-500">
-              ShopCo. essentials
-            </p>
-
-            <h2 className="mt-3 text-4xl font-black leading-none tracking-tight sm:text-5xl">
-              Style that fits
-              <br />
-              your everyday.
-            </h2>
-
-            <p className="mt-5 max-w-md text-sm leading-6 text-gray-400">
-              Simple pieces. Quality materials.
-              Designed to work together.
-            </p>
+            </div>
 
             <Link
               to="/products"
-              className="mt-7 inline-flex items-center gap-2 rounded-lg bg-green-600 px-6 py-3 text-xs font-bold text-white transition hover:bg-green-700"
+              className="text-xs font-bold text-green-600 hover:text-green-700"
             >
-              Start Shopping
-              <ArrowRight size={16} />
+              View all →
             </Link>
 
           </div>
 
-          <div className="flex h-36 w-36 shrink-0 flex-col items-center justify-center rounded-full border border-gray-700">
 
-            <strong className="text-4xl font-black">
-              100%
-            </strong>
+          {/* SMALL PRODUCT GRID */}
 
-            <span className="mt-1 text-center text-[10px] text-gray-400">
-              Everyday
-              <br />
-              essentials
-            </span>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+
+            {products.map((product) => (
+
+              <Link
+                key={product.id}
+                to={`/products/${product.id}`}
+                className="group"
+              >
+
+                {/* IMAGE */}
+
+                <div className="aspect-square overflow-hidden rounded-lg bg-gray-100">
+
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                  />
+
+                </div>
+
+
+                {/* DETAILS */}
+
+                <div className="pt-3">
+
+                  <h3 className="truncate text-xs font-bold text-gray-900">
+                    {product.name}
+                  </h3>
+
+                  <p className="mt-1 text-xs font-semibold text-gray-900">
+                    ${product.price.toFixed(2)}
+                  </p>
+
+                  <p className="mt-1 text-[10px] text-gray-500">
+                    ★ 4.8
+                  </p>
+
+                </div>
+
+              </Link>
+
+            ))}
 
           </div>
 
@@ -252,98 +276,38 @@ function Home() {
 
       </section>
 
-    </div>
-  );
-}
 
-function Service({ icon, title, text }) {
-  return (
-    <div className="flex items-start gap-3">
+      {/* ================= CTA ================= */}
 
-      <div className="text-green-700">
-        {icon}
-      </div>
+      <section className="px-4 pb-14 sm:px-6 lg:px-8">
 
-      <div>
-        <strong className="block text-xs">
-          {title}
-        </strong>
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 rounded-2xl bg-green-600 px-8 py-10 text-center text-white md:flex-row md:text-left">
 
-        <p className="mt-1 text-[10px] text-gray-500">
-          {text}
-        </p>
-      </div>
+          <div>
 
-    </div>
-  );
-}
+            <h2 className="text-2xl font-black">
+              Ready to start shopping?
+            </h2>
 
-function SectionHeading({
-  eyebrow,
-  title,
-  link,
-}) {
-  return (
-    <div className="mb-7 flex items-end justify-between">
+            <p className="mt-2 text-sm text-green-50">
+              Create your account and explore our collection.
+            </p>
 
-      <div>
+          </div>
 
-        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-green-700">
-          {eyebrow}
-        </p>
+          <Link
+            to="/login"
+            className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-xs font-bold text-green-700 transition hover:bg-gray-100"
+          >
+            Get Started
+            <ArrowRight size={15} />
+          </Link>
 
-        <h2 className="mt-1 text-2xl font-black tracking-tight sm:text-3xl">
-          {title}
-        </h2>
+        </div>
 
-      </div>
-
-      <Link
-        to={link}
-        className="hidden items-center gap-1 text-xs font-bold sm:flex"
-      >
-        View all
-        <ArrowRight size={14} />
-      </Link>
+      </section>
 
     </div>
-  );
-}
-
-function CategoryCard({
-  name,
-  image,
-  count,
-}) {
-  return (
-    <Link
-      to={`/products?category=${name}`}
-      className="group overflow-hidden rounded-xl border border-gray-100"
-    >
-
-      <div className="overflow-hidden bg-gray-100">
-
-        <img
-          src={image}
-          alt={name}
-          className="aspect-[1/0.8] w-full object-cover transition duration-500 group-hover:scale-105"
-        />
-
-      </div>
-
-      <div className="flex items-center justify-between p-4">
-
-        <strong className="text-xs">
-          {name}
-        </strong>
-
-        <span className="text-[10px] text-gray-400">
-          {count}
-        </span>
-
-      </div>
-
-    </Link>
   );
 }
 
