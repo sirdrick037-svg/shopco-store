@@ -1,10 +1,4 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -26,182 +20,129 @@ import OrderSuccess from "./pages/OrderSuccess";
 
 import About from "./pages/About";
 
-import { useAuth } from "./context/AuthContext";
-
-
-// ------------------------------------
-// PROTECTED ROUTE
-// ------------------------------------
-
-function ProtectedRoute({ children }) {
-  const { user } = useAuth();
-  const location = useLocation();
-
-  if (!user) {
-    return (
-      <Navigate
-        to="/login"
-        state={{ from: location }}
-        replace
-      />
-    );
-  }
-
-  return children;
-}
-
-
-// ------------------------------------
-// APP
-// ------------------------------------
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
-  const { user } = useAuth();
-
   return (
     <BrowserRouter>
 
-      {/* Show Header only after login */}
-      {user && <Header />}
+      <Header />
 
-      <main>
-        <Routes>
+      <Routes>
 
-          {/* ========================= */}
-          {/* PUBLIC ROUTES */}
-          {/* ========================= */}
+        {/* HOME - Anyone can see this */}
+        <Route
+          path="/"
+          element={<Home />}
+        />
 
-          <Route
-            path="/login"
-            element={<Login />}
-          />
+        {/* PRODUCTS - Login required */}
+        <Route
+          path="/products"
+          element={
+            <ProtectedRoute>
+              <Products />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/register"
-            element={<Register />}
-          />
+        {/* PRODUCT DETAILS - Login required */}
+        <Route
+          path="/products/:id"
+          element={
+            <ProtectedRoute>
+              <ProductDetails />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/forgot-password"
-            element={<ForgotPassword />}
-          />
+        {/* CATEGORIES - Login required */}
+        <Route
+          path="/categories"
+          element={
+            <ProtectedRoute>
+              <Categories />
+            </ProtectedRoute>
+          }
+        />
 
+        {/* CART - Login required */}
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          }
+        />
 
-          {/* ========================= */}
-          {/* PROTECTED ROUTES */}
-          {/* ========================= */}
+        {/* WISHLIST - Login required */}
+        <Route
+          path="/wishlist"
+          element={
+            <ProtectedRoute>
+              <Wishlist />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
+        {/* LOGIN - Public */}
+        <Route
+          path="/login"
+          element={<Login />}
+        />
 
-          <Route
-            path="/products"
-            element={
-              <ProtectedRoute>
-                <Products />
-              </ProtectedRoute>
-            }
-          />
+        {/* REGISTER - Public */}
+        <Route
+          path="/register"
+          element={<Register />}
+        />
 
-          <Route
-            path="/products/:id"
-            element={
-              <ProtectedRoute>
-                <ProductDetails />
-              </ProtectedRoute>
-            }
-          />
+        {/* FORGOT PASSWORD - Public */}
+        <Route
+          path="/forgot-password"
+          element={<ForgotPassword />}
+        />
 
-          <Route
-            path="/categories"
-            element={
-              <ProtectedRoute>
-                <Categories />
-              </ProtectedRoute>
-            }
-          />
+        {/* CHECKOUT - Login required */}
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/cart"
-            element={
-              <ProtectedRoute>
-                <Cart />
-              </ProtectedRoute>
-            }
-          />
+        {/* ACCOUNT - Login required */}
+        <Route
+          path="/account"
+          element={
+            <ProtectedRoute>
+              <Account />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/wishlist"
-            element={
-              <ProtectedRoute>
-                <Wishlist />
-              </ProtectedRoute>
-            }
-          />
+        {/* ORDER SUCCESS - Login required */}
+        <Route
+          path="/order-success"
+          element={
+            <ProtectedRoute>
+              <OrderSuccess />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/checkout"
-            element={
-              <ProtectedRoute>
-                <Checkout />
-              </ProtectedRoute>
-            }
-          />
+        {/* ABOUT - Public */}
+        <Route
+          path="/about"
+          element={<About />}
+        />
 
-          <Route
-            path="/account"
-            element={
-              <ProtectedRoute>
-                <Account />
-              </ProtectedRoute>
-            }
-          />
+      </Routes>
 
-          <Route
-            path="/order-success"
-            element={
-              <ProtectedRoute>
-                <OrderSuccess />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/about"
-            element={
-              <ProtectedRoute>
-                <About />
-              </ProtectedRoute>
-            }
-          />
-
-
-          {/* ========================= */}
-          {/* UNKNOWN URL */}
-          {/* ========================= */}
-
-          <Route
-            path="*"
-            element={
-              <Navigate
-                to={user ? "/" : "/login"}
-                replace
-              />
-            }
-          />
-
-        </Routes>
-      </main>
-
-
-      {/* Footer only after login */}
-      {user && <Footer />}
+      <Footer />
 
     </BrowserRouter>
   );
