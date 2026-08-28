@@ -12,7 +12,9 @@ ReactDOM.createRoot(
 ).render(
   <React.StrictMode>
     <AuthProvider>
-      <App />
+      <CartProvider>
+        <App />
+      </CartProvider>
     </AuthProvider>
   </React.StrictMode>
 );
