@@ -9,6 +9,13 @@ import {
 
 import { Link } from "react-router-dom";
 
+<Link
+  to="/login"
+  className="inline-flex items-center gap-2 rounded-lg bg-black px-6 py-3 text-sm font-semibold text-white hover:bg-green-700 transition"
+>
+  Get Started
+</Link>
+
 import products from "../data/products";
 import ProductCard from "../components/ProductCard";
 
