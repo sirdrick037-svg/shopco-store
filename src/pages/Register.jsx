@@ -65,7 +65,7 @@ function Register() {
       form.password
     );
 
-    navigate("/account");
+    navigate("/products");
   }
 
   return (
