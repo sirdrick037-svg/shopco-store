@@ -1,208 +1,136 @@
-import {
-  ArrowRight,
-  Check,
-  ShoppingBag,
-} from "lucide-react";
-
 import { Link } from "react-router-dom";
 
-import products from "../data/products";
-
-const categoryData = [
+const categories = [
   {
-    name: "Sneakers",
-    description:
-      "Everyday sneakers designed for comfort, movement and clean style.",
+    name: "Clothing",
+    description: "Everyday shirts, jackets, hoodies and more.",
+    count: "24 Products",
     image:
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=85",
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=80",
   },
-
   {
-    name: "T-Shirts",
-    description:
-      "Simple, versatile T-shirts made for everyday outfits.",
+    name: "Shoes",
+    description: "Comfortable footwear for every occasion.",
+    count: "18 Products",
     image:
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=85",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80",
   },
-
   {
-    name: "Hoodies",
-    description:
-      "Soft layers that bring comfort and effortless street style.",
+    name: "Bags",
+    description: "Backpacks, handbags and everyday carry.",
+    count: "15 Products",
     image:
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=85",
+      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80",
   },
-
   {
     name: "Accessories",
-    description:
-      "Finishing touches designed to complete your everyday look.",
+    description: "Complete your look with simple details.",
+    count: "21 Products",
     image:
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1000&q=85",
+      "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?auto=format&fit=crop&w=700&q=80",
+  },
+  {
+    name: "Watches",
+    description: "Minimal watches for everyday style.",
+    count: "12 Products",
+    image:
+      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=700&q=80",
+  },
+  {
+    name: "Sunglasses",
+    description: "Modern frames for sunny days.",
+    count: "10 Products",
+    image:
+      "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=700&q=80",
   },
 ];
 
 function Categories() {
   return (
-    <div className="page">
+    <div className="min-h-screen bg-white">
+      {/* HEADER */}
 
-      <div className="container">
+      <section className="px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-green-600">
+            ShopCo.
+          </p>
 
-        {/* HEADER */}
+          <h1 className="mt-2 text-3xl font-black tracking-tight sm:text-4xl">
+            Shop by Category
+          </h1>
 
-        <div className="category-page-header">
-
-          <div>
-
-            <p className="eyebrow">
-              Explore ShopCo.
-            </p>
-
-            <h1 className="page-title">
-              Shop by Category
-            </h1>
-
-            <p className="page-subtitle">
-              Find exactly what you're looking
-              for with our curated collections.
-            </p>
-
-          </div>
-
+          <p className="mt-3 max-w-xl text-sm leading-6 text-gray-500">
+            Explore our collections and find products that fit your style and
+            everyday needs.
+          </p>
         </div>
+      </section>
 
-        {/* CATEGORY GRID */}
+      {/* CATEGORIES */}
 
-        <div className="category-page-grid">
+      <section className="px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {categories.map((category) => (
+              <Link
+                key={category.name}
+                to="/products"
+                className="group overflow-hidden rounded-xl border border-gray-100 bg-white transition hover:-translate-y-1 hover:shadow-md"
+              >
+                {/* IMAGE */}
 
-          {categoryData.map(
-            (category, index) => {
+                <div className="aspect-[4/3] overflow-hidden bg-gray-100">
+                  <img
+                    src={category.image}
+                    alt={category.name}
+                    className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                  />
+                </div>
 
-              const count =
-                products.filter(
-                  (product) =>
-                    product.category ===
-                    category.name
-                ).length;
+                {/* INFORMATION */}
 
-              return (
-                <Link
-                  key={category.name}
-                  to={`/products?category=${category.name}`}
-                  className={`category-large-card ${
-                    index === 0
-                      ? "category-large-featured"
-                      : ""
-                  }`}
-                >
+                <div className="p-4">
+                  <div className="flex items-center justify-between gap-2">
+                    <h2 className="text-sm font-black">{category.name}</h2>
 
-                  <div className="category-large-image">
-
-                    <img
-                      src={category.image}
-                      alt={category.name}
-                    />
-
-                    <div className="category-overlay" />
-
-                  </div>
-
-                  <div className="category-large-content">
-
-                    <span>
-                      {count} products
+                    <span className="text-[10px] font-semibold text-green-600">
+                      {category.count}
                     </span>
-
-                    <h2>
-                      {category.name}
-                    </h2>
-
-                    <p>
-                      {category.description}
-                    </p>
-
-                    <div className="category-link">
-                      Shop {category.name}
-                      <ArrowRight size={15} />
-                    </div>
-
                   </div>
 
-                </Link>
-              );
-            }
-          )}
+                  <p className="mt-2 line-clamp-2 text-xs leading-5 text-gray-500">
+                    {category.description}
+                  </p>
 
+                  <p className="mt-3 text-[11px] font-bold text-green-600">
+                    Explore collection →
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
+      </section>
 
-        {/* WHY SHOP */}
+      {/* BOTTOM CTA */}
 
-        <section className="why-shop-section">
+      <section className="px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl rounded-2xl bg-gray-50 px-6 py-10 text-center">
+          <h2 className="text-2xl font-black">Can't decide what to shop?</h2>
 
-          <div className="why-shop-heading">
+          <p className="mx-auto mt-2 max-w-md text-xs leading-6 text-gray-500">
+            Browse our complete collection and discover something new.
+          </p>
 
-            <p className="eyebrow">
-              Why ShopCo.
-            </p>
-
-            <h2>
-              Everything you need.
-              <br />
-              Nothing you don't.
-            </h2>
-
-          </div>
-
-          <div className="why-shop-grid">
-
-            <WhyItem
-              icon={<Check size={20} />}
-              title="Curated Products"
-              text="We focus on timeless essentials instead of overwhelming you with endless options."
-            />
-
-            <WhyItem
-              icon={<ShoppingBag size={20} />}
-              title="Easy Shopping"
-              text="A clean, simple shopping experience designed to help you find what you need quickly."
-            />
-
-            <WhyItem
-              icon={<Check size={20} />}
-              title="Quality First"
-              text="Every product is selected with comfort, quality and everyday use in mind."
-            />
-
-          </div>
-
-        </section>
-
-      </div>
-
-    </div>
-  );
-}
-
-function WhyItem({
-  icon,
-  title,
-  text,
-}) {
-  return (
-    <div className="why-shop-item">
-
-      <div className="why-shop-icon">
-        {icon}
-      </div>
-
-      <h3>
-        {title}
-      </h3>
-
-      <p>
-        {text}
-      </p>
-
+          <Link
+            to="/products"
+            className="mt-5 inline-flex rounded-lg bg-green-600 px-6 py-3 text-xs font-bold text-white transition hover:bg-green-700"
+          >
+            View All Products
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
