@@ -1,16 +1,131 @@
-# React + Vite
+# ShopCo. — Mini E-Commerce Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive e-commerce frontend built with React, Vite, JSX, and Tailwind CSS.
 
-Currently, two official plugins are available:
+ShopCo. provides a complete shopping experience with product browsing, categories, product details, cart management, wishlist functionality, authentication, checkout, and order confirmation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+##  Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+###  Landing Page
+- Modern e-commerce hero section
+- "Get Started" call-to-action
+- Featured products
+- Shop by category
+- Responsive design
+- Clean and minimal UI
 
-## Expanding the ESLint configuration
+###  Authentication
+- User registration
+- User login
+- Logout functionality
+- Forgot password page
+- Account page
+- Authentication state management
+- Protected routes
+- Login required for shopping features
+- Local storage authentication for frontend demonstration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+###  Products
+- Product listing
+- Product search
+- Category filtering
+- Price filtering
+- Product sorting
+- Product details
+- Product ratings
+- Product images
+- Responsive product cards
+
+###  Wishlist
+- Add products to wishlist
+- Remove products from wishlist
+- Wishlist page
+- Persistent wishlist experience
+
+###  Shopping Cart
+- Add products to cart
+- Remove products
+- Increase/decrease quantity
+- Cart summary
+- Subtotal calculation
+- Shipping calculation
+- Total price calculation
+
+###  Checkout
+- Customer information
+- Shipping address
+- Shipping method
+- Payment information UI
+- Order summary
+- Order placement
+
+###  Order Success
+- Order confirmation
+- Order number
+- Order summary
+- Continue shopping button
+
+###  Responsive Design
+The application is designed to work across:
+
+- Desktop
+- Laptop
+- Tablet
+- Mobile
+
+---
+
+##  Tech Stack
+
+- **React**
+- **Vite**
+- **JavaScript / JSX**
+- **Tailwind CSS**
+- **React Router**
+- **Lucide React**
+- **LocalStorage**
+
+---
+
+##  Project Structure
+
+```text
+shopco/
+│
+├── public/
+│
+├── src/
+│   │
+│   ├── components/
+│   │   ├── Header.jsx
+│   │   ├── Footer.jsx
+│   │   ├── ProductCard.jsx
+│   │   └── ProtectedRoute.jsx
+│   │
+│   ├── context/
+│   │   └── AuthContext.jsx
+│   │
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   ├── Products.jsx
+│   │   ├── ProductDetails.jsx
+│   │   ├── Categories.jsx
+│   │   ├── Cart.jsx
+│   │   ├── Wishlist.jsx
+│   │   ├── Login.jsx
+│   │   ├── Register.jsx
+│   │   ├── ForgotPassword.jsx
+│   │   ├── Checkout.jsx
+│   │   ├── Account.jsx
+│   │   ├── OrderSuccess.jsx
+│   │   └── About.jsx
+│   │
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+│
+├── package.json
+├── vite.config.js
+└── README.md
