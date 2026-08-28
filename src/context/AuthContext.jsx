@@ -1,96 +1,127 @@
-import { createContext, useContext, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+} from "react";
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
-    const savedUser = localStorage.getItem("shopco_user");
-
-    if (!savedUser) {
-      return null;
-    }
+    const savedUser =
+      localStorage.getItem("shopco_user");
 
     try {
-      return JSON.parse(savedUser);
+      return savedUser
+        ? JSON.parse(savedUser)
+        : null;
     } catch {
-      localStorage.removeItem("shopco_user");
       return null;
     }
   });
 
-  const register = (name, email, password) => {
-    const account = {
-      name,
-      email,
-      password,
-    };
-
-    localStorage.setItem(
-      "shopco_account",
-      JSON.stringify(account)
-    );
-
-    const newUser = {
-      name,
-      email,
-    };
-
-    localStorage.setItem(
-      "shopco_user",
-      JSON.stringify(newUser)
-    );
-
-    setUser(newUser);
-
-    return true;
-  };
-
   const login = (email, password) => {
-    const savedAccount =
-      localStorage.getItem("shopco_account");
+    const savedUsers =
+      JSON.parse(
+        localStorage.getItem("shopco_users") || "[]"
+      );
 
-    if (!savedAccount) {
+    const existingUser = savedUsers.find(
+      (item) =>
+        item.email === email &&
+        item.password === password
+    );
+
+    if (!existingUser) {
       return {
         success: false,
         message:
-          "No account exists. Please create an account first.",
-      };
-    }
-
-    const account = JSON.parse(savedAccount);
-
-    if (
-      account.email !== email ||
-      account.password !== password
-    ) {
-      return {
-        success: false,
-        message: "Incorrect email or password.",
+          "Invalid email or password.",
       };
     }
 
     const loggedInUser = {
-      name: account.name,
-      email: account.email,
+      name: existingUser.name,
+      email: existingUser.email,
     };
+
+    setUser(loggedInUser);
 
     localStorage.setItem(
       "shopco_user",
       JSON.stringify(loggedInUser)
     );
 
+    return {
+      success: true,
+    };
+  };
+
+  const register = (
+    name,
+    email,
+    password
+  ) => {
+    const savedUsers =
+      JSON.parse(
+        localStorage.getItem("shopco_users") || "[]"
+      );
+
+    const userExists = savedUsers.some(
+      (item) => item.email === email
+    );
+
+    if (userExists) {
+      return {
+        success: false,
+        message:
+          "An account with this email already exists.",
+      };
+    }
+
+    const newUser = {
+      id: Date.now(),
+      name,
+      email,
+      password,
+    };
+
+    const updatedUsers = [
+      ...savedUsers,
+      newUser,
+    ];
+
+    localStorage.setItem(
+      "shopco_users",
+      JSON.stringify(updatedUsers)
+    );
+
+    const loggedInUser = {
+      name,
+      email,
+    };
+
     setUser(loggedInUser);
+
+    localStorage.setItem(
+      "shopco_user",
+      JSON.stringify(loggedInUser)
+    );
 
     return {
       success: true,
-      user: loggedInUser,
     };
   };
 
   const logout = () => {
-    localStorage.removeItem("shopco_user");
     setUser(null);
+
+    localStorage.removeItem(
+      "shopco_user"
+    );
   };
+
+  const isAuthenticated = !!user;
 
   return (
     <AuthContext.Provider
@@ -99,7 +130,7 @@ export function AuthProvider({ children }) {
         login,
         register,
         logout,
-        isLoggedIn: Boolean(user),
+        isAuthenticated,
       }}
     >
       {children}
@@ -108,7 +139,8 @@ export function AuthProvider({ children }) {
 }
 
 export function useAuth() {
-  const context = useContext(AuthContext);
+  const context =
+    useContext(AuthContext);
 
   if (!context) {
     throw new Error(
