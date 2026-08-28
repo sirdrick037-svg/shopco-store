@@ -54,7 +54,7 @@ function Home() {
 
               <Link
                 to="/products"
-                className="inline-flex items-center gap-2 rounded-lg bg-[#111318] px-6 py-3 text-xs font-bold text-white transition hover:bg-green-700"
+                className="inline-flex items-center gap-2 rounded-lg bg-green-600 px-6 py-3 text-xs font-bold text-white transition hover:bg-green-700"
               >
                 Shop Now
                 <ArrowRight size={16} />
@@ -226,7 +226,7 @@ function Home() {
 
             <Link
               to="/products"
-              className="mt-7 inline-flex items-center gap-2 rounded-lg bg-green-600 px-6 py-3 text-xs font-bold text-white transition hover:bg-green-500"
+              className="mt-7 inline-flex items-center gap-2 rounded-lg bg-green-600 px-6 py-3 text-xs font-bold text-white transition hover:bg-green-700"
             >
               Start Shopping
               <ArrowRight size={16} />
