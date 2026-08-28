@@ -2,7 +2,7 @@ import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 
 import { useState } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import { useAuth } from "../context/AuthContext";
 
