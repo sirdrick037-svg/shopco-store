@@ -28,25 +28,23 @@ navigate(destination, {
 
   const [loading, setLoading] = useState(false);
 
-  function handleSubmit(event) {
-    event.preventDefault();
+function handleSubmit(event) {
+  event.preventDefault();
 
-    setError("");
-    setLoading(true);
+  const result = login(email, password);
 
-    const result = login(email.trim(), password);
-
-    if (!result.success) {
-      setError(result.message);
-      setLoading(false);
-      return;
-    }
-
-    setLoading(false);
-
-    navigate("/account");
+  if (!result.success) {
+    setError(result.message);
+    return;
   }
 
+  const destination =
+    location.state?.from?.pathname || "/products";
+
+  navigate(destination, {
+    replace: true,
+  });
+}
   return (
     <div className="flex min-h-[calc(100vh-64px)] items-center justify-center bg-gray-50 px-4 py-12">
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm sm:p-10">
