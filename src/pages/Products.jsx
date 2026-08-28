@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Search, ShoppingBag } from "lucide-react";
 import { useState } from "react";
+import { useCart } from "../context/CartContext";
 
 const products = [
   {
@@ -104,6 +105,7 @@ const products = [
 const categories = ["All", "Clothing", "Shoes", "Bags", "Accessories"];
 
 function Products() {
+  const { addToCart } = useCart();
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const [search, setSearch] = useState("");
