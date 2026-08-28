@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Search, ShoppingBag } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "../context/CartContext";
+import { Search, ShoppingBag } from "lucide-react";
 
 const products = [
   {
@@ -247,6 +248,16 @@ function Products() {
               <p className="mt-1 text-xs text-gray-500">
                 Try another search or category.
               </p>
+              <button
+  onClick={(event) => {
+    event.preventDefault();
+    addToCart(product);
+  }}
+  className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-green-600 py-2 text-[10px] font-bold text-white transition hover:bg-green-700"
+>
+  <ShoppingBag size={13} />
+  Add to Cart
+</button>
             </div>
           )}
         </div>
