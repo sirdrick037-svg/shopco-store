@@ -1,107 +1,107 @@
-import {
-  createContext,
-  useContext,
-  useState,
-} from "react";
+import { createContext, useContext, useState } from "react";
 
-const CartContext = createContext();
+const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem("shopco_cart");
 
-    return savedCart
-      ? JSON.parse(savedCart)
-      : [];
+    try {
+      return savedCart ? JSON.parse(savedCart) : [];
+    } catch {
+      return [];
+    }
   });
 
-  const saveCart = (updatedCart) => {
-    setCart(updatedCart);
+  const addToCart = (product) => {
+    setCart((currentCart) => {
+      const existingProduct = currentCart.find(
+        (item) => item.id === product.id,
+      );
 
-    localStorage.setItem(
-      "shopco_cart",
-      JSON.stringify(updatedCart)
-    );
+      let updatedCart;
+
+      if (existingProduct) {
+        updatedCart = currentCart.map((item) =>
+          item.id === product.id
+            ? {
+                ...item,
+                quantity: item.quantity + 1,
+              }
+            : item,
+        );
+      } else {
+        updatedCart = [
+          ...currentCart,
+          {
+            ...product,
+            quantity: 1,
+          },
+        ];
+      }
+
+      localStorage.setItem("shopco_cart", JSON.stringify(updatedCart));
+
+      return updatedCart;
+    });
   };
 
-  const addToCart = (product) => {
-    const existingProduct = cart.find(
-      (item) => item.id === product.id
-    );
+  const removeFromCart = (productId) => {
+    setCart((currentCart) => {
+      const updatedCart = currentCart.filter((item) => item.id !== productId);
 
-    if (existingProduct) {
-      const updatedCart = cart.map((item) =>
-        item.id === product.id
+      localStorage.setItem("shopco_cart", JSON.stringify(updatedCart));
+
+      return updatedCart;
+    });
+  };
+
+  const increaseQuantity = (productId) => {
+    setCart((currentCart) => {
+      const updatedCart = currentCart.map((item) =>
+        item.id === productId
           ? {
               ...item,
               quantity: item.quantity + 1,
             }
-          : item
+          : item,
       );
 
-      saveCart(updatedCart);
-    } else {
-      saveCart([
-        ...cart,
-        {
-          ...product,
-          quantity: 1,
-        },
-      ]);
-    }
-  };
+      localStorage.setItem("shopco_cart", JSON.stringify(updatedCart));
 
-  const removeFromCart = (productId) => {
-    const updatedCart = cart.filter(
-      (item) => item.id !== productId
-    );
-
-    saveCart(updatedCart);
-  };
-
-  const increaseQuantity = (productId) => {
-    const updatedCart = cart.map((item) =>
-      item.id === productId
-        ? {
-            ...item,
-            quantity: item.quantity + 1,
-          }
-        : item
-    );
-
-    saveCart(updatedCart);
+      return updatedCart;
+    });
   };
 
   const decreaseQuantity = (productId) => {
-    const updatedCart = cart
-      .map((item) =>
-        item.id === productId
-          ? {
-              ...item,
-              quantity: item.quantity - 1,
-            }
-          : item
-      )
-      .filter((item) => item.quantity > 0);
+    setCart((currentCart) => {
+      const updatedCart = currentCart
+        .map((item) =>
+          item.id === productId
+            ? {
+                ...item,
+                quantity: item.quantity - 1,
+              }
+            : item,
+        )
+        .filter((item) => item.quantity > 0);
 
-    saveCart(updatedCart);
+      localStorage.setItem("shopco_cart", JSON.stringify(updatedCart));
+
+      return updatedCart;
+    });
   };
 
   const clearCart = () => {
     setCart([]);
-
     localStorage.removeItem("shopco_cart");
   };
 
-  const cartCount = cart.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   const cartTotal = cart.reduce(
-    (total, item) =>
-      total + item.price * item.quantity,
-    0
+    (total, item) => total + item.price * item.quantity,
+    0,
   );
 
   return (
