@@ -289,7 +289,7 @@ function Home() {
               Ready to start shopping?
             </h2>
 
-            <p className="mt-2 text-sm text-green-50">
+            <p className="mt-2 text-sm text-green-700">
               Create your account and explore our collection.
             </p>
 
@@ -297,7 +297,7 @@ function Home() {
 
           <Link
             to="/login"
-            className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-xs font-bold text-green-700 transition hover:bg-gray-100"
+            className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-xs font-bold text-green-700 transition hover:bg-gray-700"
           >
             Get Started
             <ArrowRight size={15} />
