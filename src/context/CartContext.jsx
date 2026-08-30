@@ -7,7 +7,15 @@ import {
 const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem("shopco_cart");
+
+    try {
+      return savedCart ? JSON.parse(savedCart) : [];
+    } catch {
+      return [];
+    }
+  });
 
   const addToCart = (product) => {
     setCart((currentCart) => {
@@ -15,8 +23,10 @@ export function CartProvider({ children }) {
         (item) => item.id === product.id
       );
 
+      let updatedCart;
+
       if (existingProduct) {
-        return currentCart.map((item) =>
+        updatedCart = currentCart.map((item) =>
           item.id === product.id
             ? {
                 ...item,
@@ -24,42 +34,63 @@ export function CartProvider({ children }) {
               }
             : item
         );
+      } else {
+        updatedCart = [
+          ...currentCart,
+          {
+            ...product,
+            quantity: 1,
+          },
+        ];
       }
 
-      return [
-        ...currentCart,
-        {
-          ...product,
-          quantity: 1,
-        },
-      ];
+      localStorage.setItem(
+        "shopco_cart",
+        JSON.stringify(updatedCart)
+      );
+
+      return updatedCart;
     });
   };
 
   const removeFromCart = (productId) => {
-    setCart((currentCart) =>
-      currentCart.filter(
+    setCart((currentCart) => {
+      const updatedCart = currentCart.filter(
         (item) => item.id !== productId
-      )
-    );
+      );
+
+      localStorage.setItem(
+        "shopco_cart",
+        JSON.stringify(updatedCart)
+      );
+
+      return updatedCart;
+    });
   };
 
   const increaseQuantity = (productId) => {
-    setCart((currentCart) =>
-      currentCart.map((item) =>
+    setCart((currentCart) => {
+      const updatedCart = currentCart.map((item) =>
         item.id === productId
           ? {
               ...item,
               quantity: item.quantity + 1,
             }
           : item
-      )
-    );
+      );
+
+      localStorage.setItem(
+        "shopco_cart",
+        JSON.stringify(updatedCart)
+      );
+
+      return updatedCart;
+    });
   };
 
   const decreaseQuantity = (productId) => {
-    setCart((currentCart) =>
-      currentCart
+    setCart((currentCart) => {
+      const updatedCart = currentCart
         .map((item) =>
           item.id === productId
             ? {
@@ -68,24 +99,30 @@ export function CartProvider({ children }) {
               }
             : item
         )
-        .filter((item) => item.quantity > 0)
-    );
+        .filter((item) => item.quantity > 0);
+
+      localStorage.setItem(
+        "shopco_cart",
+        JSON.stringify(updatedCart)
+      );
+
+      return updatedCart;
+    });
   };
 
   const clearCart = () => {
     setCart([]);
+    localStorage.removeItem("shopco_cart");
   };
 
   const cartCount = cart.reduce(
-    (total, item) =>
-      total + item.quantity,
+    (total, item) => total + item.quantity,
     0
   );
 
   const cartTotal = cart.reduce(
     (total, item) =>
-      total +
-      item.price * item.quantity,
+      total + Number(item.price) * item.quantity,
     0
   );
 
