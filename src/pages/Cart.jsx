@@ -1,16 +1,11 @@
-import {
-  Minus,
-  Plus,
-  Trash2,
-  ShoppingBag,
-  ArrowRight,
-} from "lucide-react";
-
 import { Link, useNavigate } from "react-router-dom";
+import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 
-import { useCart } from "../context/CartContext";
+import { useCart } from "../context/CartContext.jsx";
 
 function Cart() {
+  const navigate = useNavigate();
+
   const {
     cart,
     cartTotal,
@@ -19,232 +14,150 @@ function Cart() {
     removeFromCart,
   } = useCart();
 
-  const navigate = useNavigate();
-
-  const shipping =
-    cartTotal >= 100 || cartTotal === 0
-      ? 0
-      : 10;
+  const shipping = cartTotal >= 100 ? 0 : 10;
 
   const total = cartTotal + shipping;
 
   if (cart.length === 0) {
     return (
-      <div className="min-h-screen bg-white px-4 py-16 sm:px-6 lg:px-8">
+      <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
+        <div className="text-center">
+          <ShoppingBag size={50} className="mx-auto text-gray-300" />
 
-        <div className="mx-auto max-w-2xl text-center">
+          <h1 className="mt-5 text-2xl font-black">Your Cart Is Empty</h1>
 
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
-            <ShoppingBag
-              size={28}
-              className="text-gray-400"
-            />
-          </div>
-
-          <h1 className="mt-6 text-3xl font-black">
-            Your cart is empty
-          </h1>
-
-          <p className="mt-3 text-sm text-gray-500">
-            Looks like you haven't added anything
-            to your cart yet.
+          <p className="mt-2 text-sm text-gray-500">
+            You have not added anything to your cart yet.
           </p>
 
-          <Link
-            to="/products"
-            className="mt-7 inline-flex items-center gap-2 rounded-lg bg-green-600 px-6 py-3 text-xs font-bold text-white hover:bg-green-700"
+          <button
+            onClick={() => navigate("/products")}
+            className="mt-6 rounded-lg bg-green-600 px-6 py-3 text-xs font-bold text-white hover:bg-green-700"
           >
             Start Shopping
-            <ArrowRight size={15} />
-          </Link>
-
+          </button>
         </div>
-
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-10 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl">
+        <h1 className="text-3xl font-black">Your Cart</h1>
 
-      <div className="mx-auto max-w-7xl">
+        <p className="mt-2 text-sm text-gray-500">
+          Review your products before checkout.
+        </p>
 
-        <div className="mb-8">
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_350px]">
+          {/* PRODUCTS */}
 
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-green-600">
-            ShopCo.
-          </p>
-
-          <h1 className="mt-2 text-3xl font-black">
-            Shopping Cart
-          </h1>
-
-        </div>
-
-
-        <div className="grid gap-6 lg:grid-cols-[1fr_350px]">
-
-          {/* CART ITEMS */}
-
-          <div className="space-y-3">
-
+          <div className="space-y-4">
             {cart.map((item) => (
-
               <div
                 key={item.id}
-                className="flex gap-4 rounded-xl bg-white p-4"
+                className="flex gap-4 rounded-xl bg-white p-4 shadow-sm"
               >
-
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="h-24 w-24 shrink-0 rounded-lg object-cover"
+                  className="h-24 w-24 rounded-lg object-cover"
                 />
 
-                <div className="flex min-w-0 flex-1 flex-col justify-between">
+                <div className="min-w-0 flex-1">
+                  <p className="text-[10px] uppercase text-gray-400">
+                    {item.category}
+                  </p>
 
-                  <div>
+                  <h2 className="mt-1 text-sm font-bold">{item.name}</h2>
 
-                    <p className="text-[10px] uppercase tracking-wide text-gray-400">
-                      {item.category}
-                    </p>
+                  <p className="mt-2 text-sm font-black">
+                    ${Number(item.price).toFixed(2)}
+                  </p>
 
-                    <h2 className="mt-1 truncate text-sm font-bold">
-                      {item.name}
-                    </h2>
+                  {/* QUANTITY */}
 
-                    <p className="mt-1 text-xs font-semibold">
-                      ${item.price.toFixed(2)}
-                    </p>
-
-                  </div>
-
-
-                  <div className="mt-3 flex items-center justify-between">
-
-                    {/* QUANTITY */}
-
-                    <div className="flex items-center rounded-lg border border-gray-200">
-
-                      <button
-                        onClick={() =>
-                          decreaseQuantity(item.id)
-                        }
-                        className="p-2 hover:bg-gray-50"
-                      >
-                        <Minus size={13} />
-                      </button>
-
-                      <span className="w-8 text-center text-xs font-bold">
-                        {item.quantity}
-                      </span>
-
-                      <button
-                        onClick={() =>
-                          increaseQuantity(item.id)
-                        }
-                        className="p-2 hover:bg-gray-50"
-                      >
-                        <Plus size={13} />
-                      </button>
-
-                    </div>
-
-
-                    {/* REMOVE */}
-
+                  <div className="mt-3 flex items-center gap-2">
                     <button
-                      onClick={() =>
-                        removeFromCart(item.id)
-                      }
-                      className="text-gray-400 hover:text-red-500"
+                      onClick={() => decreaseQuantity(item.id)}
+                      className="flex h-7 w-7 items-center justify-center rounded border border-gray-200 hover:bg-gray-50"
                     >
-                      <Trash2 size={16} />
+                      <Minus size={12} />
                     </button>
 
-                  </div>
+                    <span className="w-6 text-center text-xs font-bold">
+                      {item.quantity}
+                    </span>
 
+                    <button
+                      onClick={() => increaseQuantity(item.id)}
+                      className="flex h-7 w-7 items-center justify-center rounded border border-gray-200 hover:bg-gray-50"
+                    >
+                      <Plus size={12} />
+                    </button>
+                  </div>
                 </div>
 
+                {/* REMOVE */}
+
+                <button
+                  onClick={() => removeFromCart(item.id)}
+                  className="self-start text-gray-400 hover:text-red-500"
+                >
+                  <Trash2 size={17} />
+                </button>
               </div>
-
             ))}
-
           </div>
-
 
           {/* SUMMARY */}
 
-          <div className="h-fit rounded-xl bg-white p-6">
+          <div className="h-fit rounded-xl bg-white p-6 shadow-sm">
+            <h2 className="text-lg font-black">Cart Summary</h2>
 
-            <h2 className="text-lg font-black">
-              Order Summary
-            </h2>
-
-            <div className="mt-6 space-y-4 text-xs">
-
+            <div className="mt-6 space-y-3 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-500">
-                  Subtotal
-                </span>
+                <span className="text-gray-500">Subtotal</span>
 
-                <span className="font-bold">
-                  ${cartTotal.toFixed(2)}
-                </span>
+                <span className="font-bold">${cartTotal.toFixed(2)}</span>
               </div>
 
               <div className="flex justify-between">
-                <span className="text-gray-500">
-                  Shipping
-                </span>
+                <span className="text-gray-500">Shipping</span>
 
                 <span className="font-bold">
-                  {shipping === 0
-                    ? "Free"
-                    : `$${shipping.toFixed(2)}`}
+                  {shipping === 0 ? "FREE" : `$${shipping.toFixed(2)}`}
                 </span>
               </div>
-
-              <div className="border-t border-gray-100 pt-4">
-
-                <div className="flex justify-between">
-
-                  <span className="font-bold">
-                    Total
-                  </span>
-
-                  <span className="text-lg font-black">
-                    ${total.toFixed(2)}
-                  </span>
-
-                </div>
-
-              </div>
-
             </div>
 
+            <div className="my-5 border-t border-gray-100" />
+
+            <div className="flex justify-between">
+              <span className="font-black">Total</span>
+
+              <span className="text-xl font-black text-green-600">
+                ${total.toFixed(2)}
+              </span>
+            </div>
 
             <button
               onClick={() => navigate("/checkout")}
-              className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-green-600 text-xs font-bold text-white hover:bg-green-700"
+              className="mt-6 w-full rounded-lg bg-green-600 py-3 text-xs font-bold text-white hover:bg-green-700"
             >
               Proceed to Checkout
-              <ArrowRight size={15} />
             </button>
 
             <Link
               to="/products"
-              className="mt-4 block text-center text-xs font-bold text-gray-500 hover:text-green-600"
+              className="mt-3 block text-center text-xs font-bold text-gray-500 hover:text-green-600"
             >
               Continue Shopping
             </Link>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
   );
 }
