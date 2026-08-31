@@ -108,12 +108,7 @@ function About() {
 
       <section className="about-story">
         <div className="container about-story-grid">
-          <div className="about-story-image">
-            <img
-              src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=85"
-              alt="Shopping experience"
-            />
-          </div>
+
 
           <div className="about-story-text">
             <p className="eyebrow">The ShopCo. experience</p>
