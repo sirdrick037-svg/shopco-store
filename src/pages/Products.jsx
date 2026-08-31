@@ -93,6 +93,77 @@ const products = [
     image:
       "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=600&q=80",
   },
+  {
+  id: 11,
+  name: "Classic Leather Belt",
+  price: 29.99,
+  category: "Belts",
+  rating: 4.6,
+  image:
+    "https://images.unsplash.com/photo-1624222247344-550fb60583dc?auto=format&fit=crop&w=600&q=80",
+  description:
+    "A classic leather belt with a simple design that works perfectly with casual and formal outfits.",
+},
+
+{
+  id: 12,
+  name: "Classic Wrist Watch",
+  price: 79.99,
+  category: "Watches",
+  rating: 4.8,
+  image:
+    "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=600&q=80",
+  description:
+    "A stylish everyday wrist watch with a clean design that adds a sophisticated touch to any outfit.",
+},
+
+{
+  id: 13,
+  name: "Modern Sunglasses",
+  price: 34.99,
+  category: "Sunglasses",
+  rating: 4.5,
+  image:
+    "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
+  description:
+    "Modern sunglasses designed to complete your look while providing comfortable protection from the sun.",
+},
+
+{
+  id: 14,
+  name: "Leather Shoulder Bag",
+  price: 54.99,
+  category: "Bags",
+  rating: 4.7,
+  image:
+    "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80",
+  description:
+    "A stylish and practical shoulder bag suitable for everyday use.",
+},
+
+{
+  id: 15,
+  name: "Classic Wallet",
+  price: 24.99,
+  category: "Accessories",
+  rating: 4.6,
+  image:
+    "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80",
+  description:
+    "A compact and elegant wallet designed to keep your everyday essentials organized.",
+},
+
+{
+  id: 16,
+  name: "Fashion Bracelet",
+  price: 19.99,
+  category: "Accessories",
+  rating: 4.4,
+  image:
+    "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=600&q=80",
+  description:
+    "A simple fashion bracelet that adds a stylish finishing touch to your outfit.",
+},
 ];
 
 function Products() {
