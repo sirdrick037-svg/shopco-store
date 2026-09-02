@@ -1,51 +1,152 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Star } from "lucide-react";
+import products from "../data/products.js";
 
 const categories = [
   {
     name: "Clothing",
     description: "Everyday shirts, jackets, hoodies and more.",
-    count: "24 Products",
     image:
       "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=80",
   },
   {
     name: "Shoes",
     description: "Comfortable footwear for every occasion.",
-    count: "18 Products",
     image:
       "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80",
   },
   {
     name: "Bags",
     description: "Backpacks, handbags and everyday carry.",
-    count: "15 Products",
     image:
       "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80",
   },
   {
     name: "Accessories",
     description: "Complete your look with simple details.",
-    count: "21 Products",
     image:
       "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?auto=format&fit=crop&w=700&q=80",
   },
   {
     name: "Watches",
     description: "Minimal watches for everyday style.",
-    count: "12 Products",
     image:
       "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=700&q=80",
   },
   {
     name: "Sunglasses",
     description: "Modern frames for sunny days.",
-    count: "10 Products",
     image:
       "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=700&q=80",
   },
 ];
 
 function Categories() {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const filteredProducts = selectedCategory
+    ? products.filter((p) => p.category === selectedCategory)
+    : [];
+
+  const categoryCount = (categoryName) => {
+    return products.filter((p) => p.category === categoryName).length;
+  };
+
+  // PRODUCT VIEW
+  if (selectedCategory) {
+    return (
+      <div className="min-h-screen bg-white">
+        {/* HEADER */}
+
+        <section className="px-4 py-12 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <button
+              onClick={() => setSelectedCategory(null)}
+              className="text-xs font-semibold text-green-600 hover:text-green-700 mb-4"
+            >
+              ← Back to Categories
+            </button>
+
+            <h1 className="text-3xl font-black tracking-tight sm:text-4xl">
+              {selectedCategory}
+            </h1>
+
+            <p className="mt-3 text-sm text-gray-500">
+              Showing {filteredProducts.length} products
+            </p>
+          </div>
+        </section>
+
+        {/* PRODUCTS GRID */}
+
+        <section className="px-4 pb-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            {filteredProducts.length > 0 ? (
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {filteredProducts.map((product) => (
+                  <Link
+                    key={product.id}
+                    to={`/products/${product.id}`}
+                    className="group"
+                  >
+                    {/* IMAGE */}
+
+                    <div className="aspect-square overflow-hidden rounded-lg bg-gray-100">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                      />
+                    </div>
+
+                    {/* INFO */}
+
+                    <div className="mt-4">
+                      <h3 className="text-sm font-semibold text-gray-900">
+                        {product.name}
+                      </h3>
+
+                      <div className="mt-2 flex items-center gap-1">
+                        <div className="flex">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              size={14}
+                              className={`${
+                                i < Math.floor(product.rating)
+                                  ? "fill-yellow-400 text-yellow-400"
+                                  : "text-gray-300"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                        <span className="ml-1 text-xs text-gray-600">
+                          ({product.reviews})
+                        </span>
+                      </div>
+
+                      <p className="mt-2 text-lg font-bold text-gray-900">
+                        ${product.price}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-gray-500">
+                  No products found in this category.
+                </p>
+              </div>
+            )}
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  // CATEGORIES VIEW
   return (
     <div className="min-h-screen bg-white">
       {/* HEADER */}
@@ -73,10 +174,10 @@ function Categories() {
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {categories.map((category) => (
-              <Link
+              <button
                 key={category.name}
-                to="/products"
-                className="group overflow-hidden rounded-xl border border-gray-100 bg-white transition hover:-translate-y-1 hover:shadow-md"
+                onClick={() => setSelectedCategory(category.name)}
+                className="group overflow-hidden rounded-xl border border-gray-100 bg-white transition hover:-translate-y-1 hover:shadow-md text-left"
               >
                 {/* IMAGE */}
 
@@ -95,7 +196,7 @@ function Categories() {
                     <h2 className="text-sm font-black">{category.name}</h2>
 
                     <span className="text-[10px] font-semibold text-green-600">
-                      {category.count}
+                      {categoryCount(category.name)} Products
                     </span>
                   </div>
 
@@ -107,7 +208,7 @@ function Categories() {
                     Explore collection →
                   </p>
                 </div>
-              </Link>
+              </button>
             ))}
           </div>
         </div>
@@ -134,5 +235,3 @@ function Categories() {
     </div>
   );
 }
-
-export default Categories;
