@@ -27,7 +27,7 @@ function Header() {
   function handleLogout() {
     logout();
     setMobileMenu(false);
-    navigate("/");
+    navigate("/logout");
   }
 
   return (

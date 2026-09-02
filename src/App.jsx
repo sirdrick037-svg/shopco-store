@@ -23,6 +23,7 @@ import Contact from "./pages/Contact.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import ForgotPassword from "./pages/ForgotPassword.jsx";
+import Logout from "./pages/Logout.jsx";
 import OrderSuccess from "./pages/OrderSuccess.jsx";
 
 // Context
@@ -281,6 +282,10 @@ function App() {
           {/* FORGOT PASSWORD */}
 
           <Route path="/forgot-password" element={<ForgotPassword />} />
+
+          {/* LOGOUT */}
+
+          <Route path="/logout" element={<Logout />} />
 
           {/* ABOUT */}
 

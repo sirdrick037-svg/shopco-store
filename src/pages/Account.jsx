@@ -17,7 +17,7 @@ function Account() {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("/logout");
   };
 
   return (
