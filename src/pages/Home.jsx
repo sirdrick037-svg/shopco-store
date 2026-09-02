@@ -7,56 +7,56 @@ const products = [
     name: "Classic White Shirt",
     price: 39.99,
     image:
-      "https://api.example.com/images/shirt-1.jpg",
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80",
   },
   {
     id: 2,
     name: "Casual Denim Jacket",
     price: 59.99,
     image:
-      "https://api.example.com/images/jacket-1.jpg",
+      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80",
   },
   {
     id: 3,
     name: "Everyday Sneakers",
     price: 74.99,
     image:
-      "https://api.example.com/images/shoe-1.jpg",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80",
   },
   {
     id: 4,
     name: "Leather Handbag",
     price: 89.99,
     image:
-      "https://api.example.com/images/bag-1.jpg",
+      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80",
   },
   {
     id: 5,
     name: "Minimal Watch",
     price: 49.99,
     image:
-      "https://api.example.com/images/watch-1.jpg",
+      "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=600&q=80",
   },
   {
     id: 6,
     name: "Premium Sunglasses",
     price: 34.99,
     image:
-      "https://api.example.com/images/sunglasses-1.jpg",
+      "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=600&q=80",
   },
   {
     id: 7,
     name: "Cotton Hoodie",
     price: 44.99,
     image:
-      "https://api.example.com/images/hoodie-1.jpg",
+      "https://images.unsplash.com/photo-1556821552-5ff63b1b0e7d?auto=format&fit=crop&w=600&q=80",
   },
   {
     id: 8,
     name: "Classic Backpack",
     price: 64.99,
     image:
-      "https://api.example.com/images/backpack-1.jpg",
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80",
   },
 ];
 
@@ -108,7 +108,7 @@ function Home() {
           <div className="overflow-hidden rounded-2xl">
 
             <img
-              src="https://api.example.com/images/hero-banner.jpg"
+              src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?auto=format&fit=crop&w=1200&q=80"
               alt="ShopCo collection"
               className="h-[420px] w-full object-cover"
             />
@@ -145,22 +145,22 @@ function Home() {
               {
                 name: "Clothing",
                 image:
-                  "https://api.example.com/images/category-clothing.jpg",
+                  "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
               },
               {
                 name: "Shoes",
                 image:
-                  "https://api.example.com/images/category-shoes.jpg",
+                  "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
               },
               {
                 name: "Accessories",
                 image:
-                  "https://api.example.com/images/category-accessories.jpg",
+                  "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80",
               },
               {
                 name: "Bags",
                 image:
-                  "https://api.example.com/images/category-bags.jpg",
+                  "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80",
               },
             ].map((category) => (
               <Link

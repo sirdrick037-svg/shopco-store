@@ -8,23 +8,23 @@ const categories = [
     name: "Clothing",
     description: "Everyday shirts, jackets, hoodies and more.",
     image:
-      "https://api.example.com/images/category-clothing.jpg",
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80",
     subcategories: [
       {
         name: "Shirts",
-        image: "https://api.example.com/images/shirt-1.jpg",
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Hoodies",
-        image: "https://api.example.com/images/hoodie-1.jpg",
+        image: "https://images.unsplash.com/photo-1556821552-5ff63b1b0e7d?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Trousers",
-        image: "https://api.example.com/images/trousers-1.jpg",
+        image: "https://images.unsplash.com/photo-1542272604-787c62d465d1?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Jackets",
-        image: "https://api.example.com/images/jacket-1.jpg",
+        image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80",
       },
     ],
   },
@@ -32,23 +32,23 @@ const categories = [
     name: "Shoes",
     description: "Comfortable footwear for every occasion.",
     image:
-      "https://api.example.com/images/category-shoes.jpg",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80",
     subcategories: [
       {
         name: "Sneakers",
-        image: "https://api.example.com/images/shoe-1.jpg",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Casual Shoes",
-        image: "https://api.example.com/images/shoe-2.jpg",
+        image: "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Boots",
-        image: "https://api.example.com/images/shoe-3.jpg",
+        image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Sandals",
-        image: "https://api.example.com/images/shoe-4.jpg",
+        image: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=800&q=80",
       },
     ],
   },
@@ -56,23 +56,23 @@ const categories = [
     name: "Bags",
     description: "Backpacks, handbags and everyday carry.",
     image:
-      "https://api.example.com/images/category-bags.jpg",
+      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=80",
     subcategories: [
       {
         name: "Backpacks",
-        image: "https://api.example.com/images/backpack-1.jpg",
+        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Crossbody Bags",
-        image: "https://api.example.com/images/bag-1.jpg",
+        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Tote Bags",
-        image: "https://api.example.com/images/bag-2.jpg",
+        image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Messenger Bags",
-        image: "https://api.example.com/images/bag-3.jpg",
+        image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80",
       },
     ],
   },
@@ -80,23 +80,23 @@ const categories = [
     name: "Accessories",
     description: "Complete your look with simple details.",
     image:
-      "https://api.example.com/images/category-accessories.jpg",
+      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=900&q=80",
     subcategories: [
       {
         name: "Caps",
-        image: "https://api.example.com/images/cap-1.jpg",
+        image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Belts",
-        image: "https://api.example.com/images/belt-1.jpg",
+        image: "https://images.unsplash.com/photo-1624222247344-550fb60583dc?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Scarves",
-        image: "https://api.example.com/images/scarf-1.jpg",
+        image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Jewelry",
-        image: "https://api.example.com/images/jewelry-1.jpg",
+        image: "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=800&q=80",
       },
     ],
   },
@@ -104,23 +104,23 @@ const categories = [
     name: "Watches",
     description: "Minimal watches for everyday style.",
     image:
-      "https://api.example.com/images/category-watches.jpg",
+      "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=900&q=80",
     subcategories: [
       {
         name: "Analog Watches",
-        image: "https://api.example.com/images/watch-1.jpg",
+        image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Digital Watches",
-        image: "https://api.example.com/images/watch-2.jpg",
+        image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Smart Watches",
-        image: "https://api.example.com/images/watch-3.jpg",
+        image: "https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Sport Watches",
-        image: "https://api.example.com/images/watch-4.jpg",
+        image: "https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?auto=format&fit=crop&w=800&q=80",
       },
     ],
   },
@@ -128,23 +128,23 @@ const categories = [
     name: "Sunglasses",
     description: "Modern frames for sunny days.",
     image:
-      "https://api.example.com/images/category-sunglasses.jpg",
+      "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=900&q=80",
     subcategories: [
       {
         name: "Aviators",
-        image: "https://api.example.com/images/sunglasses-1.jpg",
+        image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Wayfarer",
-        image: "https://api.example.com/images/sunglasses-2.jpg",
+        image: "https://images.unsplash.com/photo-1517841905240-472988c2477d?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Oversized",
-        image: "https://api.example.com/images/sunglasses-3.jpg",
+        image: "https://images.unsplash.com/photo-1577803947579-9f7a5b53e48a?auto=format&fit=crop&w=800&q=80",
       },
       {
         name: "Cat Eye",
-        image: "https://api.example.com/images/sunglasses-4.jpg",
+        image: "https://images.unsplash.com/photo-1577803947579-9f7a5b53e48a?auto=format&fit=crop&w=800&q=80",
       },
     ],
   },
