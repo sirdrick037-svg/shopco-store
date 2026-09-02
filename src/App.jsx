@@ -7,6 +7,7 @@ import {
   Outlet,
   Link,
   useLocation,
+  useNavigate,
 } from "react-router-dom";
 
 // Pages
@@ -51,6 +52,13 @@ function ProtectedRoute() {
 
 function PublicLayout() {
   const { cartCount } = useCart();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login", { replace: true });
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -109,12 +117,31 @@ function PublicLayout() {
           {/* RIGHT SIDE */}
 
           <div className="flex items-center gap-4">
-            <Link
-              to="/login"
-              className="text-xs font-bold text-gray-700 hover:text-green-600"
-            >
-              Login
-            </Link>
+            {user ? (
+              <>
+                <Link
+                  to="/account"
+                  className="text-xs font-bold text-gray-700 hover:text-green-600"
+                >
+                  My Account
+                </Link>
+
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="text-xs font-bold text-red-600 hover:text-red-700"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <Link
+                to="/login"
+                className="text-xs font-bold text-gray-700 hover:text-green-600"
+              >
+                Login
+              </Link>
+            )}
 
             <Link
               to="/cart"
