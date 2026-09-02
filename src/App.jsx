@@ -290,22 +290,23 @@ function App() {
 
           <Route path="/contact" element={<Contact />} />
 
+          {/* PRODUCTS */}
+
+          <Route path="/products" element={<Products />} />
+
+          {/* PRODUCT DETAILS */}
+
+          <Route path="/products/:id" element={<ProductDetails />} />
+
+          {/* CATEGORIES */}
+
+          <Route path="/categories" element={<Categories />} />
+
           {/* =================================================
               PROTECTED PAGES
           ================================================= */}
 
           <Route element={<ProtectedRoute />}>
-            {/* PRODUCTS */}
-
-            <Route path="/products" element={<Products />} />
-
-            {/* PRODUCT DETAILS */}
-
-            <Route path="/products/:id" element={<ProductDetails />} />
-
-            {/* CATEGORIES */}
-
-            <Route path="/categories" element={<Categories />} />
 
             {/* CART */}
 
