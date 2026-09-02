@@ -8,68 +8,181 @@ const categories = [
     name: "Clothing",
     description: "Everyday shirts, jackets, hoodies and more.",
     image:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=80",
+      "https://api.example.com/images/category-clothing.jpg",
+    subcategories: [
+      {
+        name: "Shirts",
+        image: "https://api.example.com/images/shirt-1.jpg",
+      },
+      {
+        name: "Hoodies",
+        image: "https://api.example.com/images/hoodie-1.jpg",
+      },
+      {
+        name: "Trousers",
+        image: "https://api.example.com/images/trousers-1.jpg",
+      },
+      {
+        name: "Jackets",
+        image: "https://api.example.com/images/jacket-1.jpg",
+      },
+    ],
   },
   {
     name: "Shoes",
     description: "Comfortable footwear for every occasion.",
     image:
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80",
+      "https://api.example.com/images/category-shoes.jpg",
+    subcategories: [
+      {
+        name: "Sneakers",
+        image: "https://api.example.com/images/shoe-1.jpg",
+      },
+      {
+        name: "Casual Shoes",
+        image: "https://api.example.com/images/shoe-2.jpg",
+      },
+      {
+        name: "Boots",
+        image: "https://api.example.com/images/shoe-3.jpg",
+      },
+      {
+        name: "Sandals",
+        image: "https://api.example.com/images/shoe-4.jpg",
+      },
+    ],
   },
   {
     name: "Bags",
     description: "Backpacks, handbags and everyday carry.",
     image:
-      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80",
+      "https://api.example.com/images/category-bags.jpg",
+    subcategories: [
+      {
+        name: "Backpacks",
+        image: "https://api.example.com/images/backpack-1.jpg",
+      },
+      {
+        name: "Crossbody Bags",
+        image: "https://api.example.com/images/bag-1.jpg",
+      },
+      {
+        name: "Tote Bags",
+        image: "https://api.example.com/images/bag-2.jpg",
+      },
+      {
+        name: "Messenger Bags",
+        image: "https://api.example.com/images/bag-3.jpg",
+      },
+    ],
   },
   {
     name: "Accessories",
     description: "Complete your look with simple details.",
     image:
-      "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?auto=format&fit=crop&w=700&q=80",
+      "https://api.example.com/images/category-accessories.jpg",
+    subcategories: [
+      {
+        name: "Caps",
+        image: "https://api.example.com/images/cap-1.jpg",
+      },
+      {
+        name: "Belts",
+        image: "https://api.example.com/images/belt-1.jpg",
+      },
+      {
+        name: "Scarves",
+        image: "https://api.example.com/images/scarf-1.jpg",
+      },
+      {
+        name: "Jewelry",
+        image: "https://api.example.com/images/jewelry-1.jpg",
+      },
+    ],
   },
   {
     name: "Watches",
     description: "Minimal watches for everyday style.",
     image:
-      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=700&q=80",
+      "https://api.example.com/images/category-watches.jpg",
+    subcategories: [
+      {
+        name: "Analog Watches",
+        image: "https://api.example.com/images/watch-1.jpg",
+      },
+      {
+        name: "Digital Watches",
+        image: "https://api.example.com/images/watch-2.jpg",
+      },
+      {
+        name: "Smart Watches",
+        image: "https://api.example.com/images/watch-3.jpg",
+      },
+      {
+        name: "Sport Watches",
+        image: "https://api.example.com/images/watch-4.jpg",
+      },
+    ],
   },
   {
     name: "Sunglasses",
     description: "Modern frames for sunny days.",
     image:
-      "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=700&q=80",
+      "https://api.example.com/images/category-sunglasses.jpg",
+    subcategories: [
+      {
+        name: "Aviators",
+        image: "https://api.example.com/images/sunglasses-1.jpg",
+      },
+      {
+        name: "Wayfarer",
+        image: "https://api.example.com/images/sunglasses-2.jpg",
+      },
+      {
+        name: "Oversized",
+        image: "https://api.example.com/images/sunglasses-3.jpg",
+      },
+      {
+        name: "Cat Eye",
+        image: "https://api.example.com/images/sunglasses-4.jpg",
+      },
+    ],
   },
 ];
 
 function Categories() {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
 
-  const filteredProducts = selectedCategory
-    ? products.filter((p) => p.category === selectedCategory)
+  const currentCategory = categories.find((c) => c.name === selectedCategory);
+
+  const filteredProducts = selectedSubcategory
+    ? products.filter((p) => p.category === selectedSubcategory)
     : [];
 
   const categoryCount = (categoryName) => {
     return products.filter((p) => p.category === categoryName).length;
   };
 
-  // PRODUCT VIEW
-  if (selectedCategory) {
+  // PRODUCTS VIEW
+  if (selectedSubcategory) {
     return (
       <div className="min-h-screen bg-white">
         {/* HEADER */}
 
         <section className="px-4 py-12 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
-            <button
-              onClick={() => setSelectedCategory(null)}
-              className="text-xs font-semibold text-green-600 hover:text-green-700 mb-4"
-            >
-              ← Back to Categories
-            </button>
+            <div className="flex items-center gap-2 mb-4">
+              <button
+                onClick={() => setSelectedSubcategory(null)}
+                className="text-xs font-semibold text-green-600 hover:text-green-700"
+              >
+                ← Back to {selectedCategory}
+              </button>
+            </div>
 
             <h1 className="text-3xl font-black tracking-tight sm:text-4xl">
-              {selectedCategory}
+              {selectedSubcategory}
             </h1>
 
             <p className="mt-3 text-sm text-gray-500">
@@ -140,6 +253,70 @@ function Categories() {
                 </p>
               </div>
             )}
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  // SUBCATEGORIES VIEW
+  if (selectedCategory) {
+    return (
+      <div className="min-h-screen bg-white">
+        {/* HEADER */}
+
+        <section className="px-4 py-12 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <button
+              onClick={() => setSelectedCategory(null)}
+              className="text-xs font-semibold text-green-600 hover:text-green-700 mb-4"
+            >
+              ← Back to Categories
+            </button>
+
+            <h1 className="text-3xl font-black tracking-tight sm:text-4xl">
+              {selectedCategory}
+            </h1>
+
+            <p className="mt-3 max-w-xl text-sm leading-6 text-gray-500">
+              Choose from our {selectedCategory.toLowerCase()} collection.
+            </p>
+          </div>
+        </section>
+
+        {/* SUBCATEGORIES GRID */}
+
+        <section className="px-4 pb-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+              {currentCategory.subcategories.map((subcategory) => (
+                <button
+                  key={subcategory.name}
+                  onClick={() => setSelectedSubcategory(subcategory.name)}
+                  className="group overflow-hidden rounded-xl border border-gray-100 bg-white transition hover:-translate-y-1 hover:shadow-md text-left"
+                >
+                  {/* IMAGE */}
+
+                  <div className="aspect-[4/3] overflow-hidden bg-gray-100">
+                    <img
+                      src={subcategory.image}
+                      alt={subcategory.name}
+                      className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                    />
+                  </div>
+
+                  {/* INFORMATION */}
+
+                  <div className="p-4">
+                    <h2 className="text-sm font-black">{subcategory.name}</h2>
+
+                    <p className="mt-3 text-[11px] font-bold text-green-600">
+                      View collection →
+                    </p>
+                  </div>
+                </button>
+              ))}
+            </div>
           </div>
         </section>
       </div>
@@ -235,3 +412,5 @@ function Categories() {
     </div>
   );
 }
+
+export default Categories;
